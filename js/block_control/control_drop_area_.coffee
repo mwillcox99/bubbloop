@@ -71,17 +71,20 @@ class @control_drop_area_
 		$new_div.bind 'tap click',()=>
 			@run()
 
-	run: (outer_cb)->
-		celeb = @celebrity.run()
-		@source.run celeb, (list) =>
+	run: ()->
+		celeb_name = @celebrity.run()
+		@source.run celeb_name, (list, outer_cb) =>
+			# This is the for loop that iterates through the feed
 			async.forEachOfSeries list, (element, i, cb) =>
 				if @filter.run element
+					console.log "GOT EM"
 					@action.run element, cb
 				else
-					console.log "Element does not pass filter"
+					console.log "SKIPPED"
 					cb()
 				return
 			, (err) ->
 				if outer_cb?
+					console.log "LOOP ENDED"
 					outer_cb()
 

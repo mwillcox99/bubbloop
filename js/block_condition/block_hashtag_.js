@@ -5,16 +5,33 @@ this.block_hashtag_ = (function() {
   function block_hashtag_() {
     this.run = bind(this.run, this);
     var css;
-    css = ".hashtags {\n	position: relative;\n}\n\ninput[name='hashtaginput'] {\n	position: absolute;\n	left: 40px;\n	top: 50px;\n}";
-    $("<style type='text/css'></style>").html(css).appendTo("head");
-    $("<div class=\"drag-wrap draggable filter hashtags\" name=\"hashtag\">\n	<!--<form>\n		#<input type=\"text\" name=\"hashtaginput\">\n	</form>-->\n	<form action=\"demo_form.asp\" style=\"z-index:'1000000000'\">\n		First name: <input type=\"text\" name=\"hashtaginput\" value=\"Mickey\"><br>\n		Last name: <input type=\"text\" name=\"LastName\" value=\"Mouse\"><br>\n		<input type=\"submit\" value=\"Submit\">\n	</form>\n</div>").appendTo(".drag-zone");
+    if (window.hashtag_counter != null) {
+      window.hashtag_counter++;
+    } else {
+      window.hashtag_counter = 0;
+    }
+    this.counter = window.hashtag_counter;
+    css = "#hashtag_input" + window.hashtag_counter + " {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	font-size: 11px;\n}";
+    $('<style type="text/css"></style>').html(css).appendTo("head");
+    $("<div class=\"drag-wrap draggable filter\" name=\"hashtag\">\n	#\n	<input id=\"hashtag_input" + window.hashtag_counter + "\" type=\"text\" value=\"\">\n</div>").appendTo(".drag-zone");
+    interact("[name=hashtag]").on('tap click', (function(_this) {
+      return function(event) {
+        return $("#hashtag_input" + window.hashtag_counter).focus();
+      };
+    })(this));
   }
 
   block_hashtag_.prototype.run = function(element) {
-    var likes, tags;
-    console.log(element);
-    likes = element.likes.count;
-    return tags = element.tags;
+    var lower_tags, tag, tags;
+    tags = element.tags;
+    tag = $("#hashtag_input" + this.counter).val().toLowerCase();
+    lower_tags = tags.map(function(string) {
+      return string.toLowerCase();
+    });
+    if ($.inArray(tag, lower_tags) === -1) {
+      return false;
+    }
+    return true;
   };
 
   return block_hashtag_;

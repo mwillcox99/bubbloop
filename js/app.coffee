@@ -17,9 +17,8 @@ $ ->
 
 	# Step 3 - Filters
 	window.block_filter = new block_filter_()
-	window.block_temp2 = new block_filter_()
+	window.block_hashtag = new block_hashtag_()
 	window.block_temp3 = new block_filter_()
-	# window.block_hashtag = new block_hashtag_()
 
 	# Step 4 - Action
 	window.block_display_image = new block_display_image_()

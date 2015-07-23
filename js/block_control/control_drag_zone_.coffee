@@ -17,7 +17,6 @@ class @control_drag_zone_
 				height: #{diameter}px;
 				border: 1px black solid;
 				background: rgba(255, 255, 255, 0.8);
-				font-size: 20px;
 			}
 		"""
 		$("<style type='text/css'></style>").html(css).appendTo "head"
@@ -36,13 +35,11 @@ class @control_drag_zone_
 		else append_to_this = '.drop-zone'
 
 		$("""
-		<div id='celeb-drop-zone' class='droppable steps droppable-#{@counter_id}' role='condition'><br>
-			STEP 1:<br>
-			DROP CELEB HERE!
+		<div id='celeb-drop-zone' class='droppable steps droppable-#{@counter_id}' role='condition'>
 		</div>
 		""").appendTo ".drop-zone"
 
-		# block bank UI
+		# Block bank UI
 		items = $ ".drag-wrap"
 		onScroll = ()=>
 			i=0
@@ -57,7 +54,7 @@ class @control_drag_zone_
 			return
 
 		# still double fillable
-		#interact('.droppable:not(.caught--it)').dropzone
+		# interact('.droppable:not(.caught--it)').dropzone
 		interact(".droppable-#{@counter_id}").dropzone
 			accept: '.draggable'
 			overlap: .1

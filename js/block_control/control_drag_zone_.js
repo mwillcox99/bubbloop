@@ -11,7 +11,7 @@ this.control_drag_zone_ = (function() {
     this.top = top;
     this.diameter = diameter;
     this.bubble_type = bubble_type;
-    css = ".droppable-" + this.counter_id + " {\n	position: absolute;\n	top: " + top + "px;\n	left: " + left + "px;\n	width: " + diameter + "px;\n	height: " + diameter + "px;\n	border: 1px black solid;\n	background: rgba(255, 255, 255, 0.8);\n	font-size: 20px;\n}";
+    css = ".droppable-" + this.counter_id + " {\n	position: absolute;\n	top: " + top + "px;\n	left: " + left + "px;\n	width: " + diameter + "px;\n	height: " + diameter + "px;\n	border: 1px black solid;\n	background: rgba(255, 255, 255, 0.8);\n}";
     $("<style type='text/css'></style>").html(css).appendTo("head");
     $("." + this.bubble_type).css({
       opacity: '1'
@@ -26,7 +26,7 @@ this.control_drag_zone_ = (function() {
     } else {
       append_to_this = '.drop-zone';
     }
-    $("<div id='celeb-drop-zone' class='droppable steps droppable-" + this.counter_id + "' role='condition'><br>\n	STEP 1:<br>\n	DROP CELEB HERE!\n</div>").appendTo(".drop-zone");
+    $("<div id='celeb-drop-zone' class='droppable steps droppable-" + this.counter_id + "' role='condition'>\n</div>").appendTo(".drop-zone");
     items = $(".drag-wrap");
     onScroll = (function(_this) {
       return function() {

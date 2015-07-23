@@ -18,20 +18,23 @@ class @block_instagram_
 		<div id="instafeed"></div>
 		""").appendTo ".drag-zone"
 
-	run: (celeb, cb) =>
-		# background music
-		audio = new Audio "sound/#{celeb.name}.mp3"
-		audio.play()
-
-		# get the feed for instagram
-		feed = new Instafeed
+	run: (celeb, loop_func) =>
+		#get the feed for instagram
+		@feed = new Instafeed
 			get: 'user'
 			userId: celeb.instagram_id
 			accessToken: '2072221807.1677ed0.cfc898e6c7124300bb90d836f3e14e9d'
 			clientId: 'f41df43206564056b252ae8a5cb4019e'
+			limit: 60
 			error: ()->
 				console.log "instagram error"
-			success: (json)->
-				cb json.data
+			success: (json)=>
+				list = json.data
+				loop_func list, @loop_done
 
-		feed.run()
+		@feed.run()
+
+	loop_done: () =>
+		if @feed.hasNext()
+			@feed.next()
+		else return

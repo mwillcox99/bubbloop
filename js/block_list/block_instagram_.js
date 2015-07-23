@@ -3,6 +3,7 @@ var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); 
 
 this.block_instagram_ = (function() {
   function block_instagram_() {
+    this.loop_done = bind(this.loop_done, this);
     this.run = bind(this.run, this);
     var css;
     css = "#instagram_pic {\n	position: absolute;\n	left: 23px;\n	top: 23px;\n	width: 100px;\n}";
@@ -10,23 +11,33 @@ this.block_instagram_ = (function() {
     $("<div class=\"drag-wrap draggable source\" name=\"instagram\">\n	<img id=\"instagram_pic\" src=\"img/instagram.png\">\n</div>\n<div id=\"instafeed\"></div>").appendTo(".drag-zone");
   }
 
-  block_instagram_.prototype.run = function(celeb, cb) {
-    var audio, feed;
-    audio = new Audio("sound/" + celeb.name + ".mp3");
-    audio.play();
-    feed = new Instafeed({
+  block_instagram_.prototype.run = function(celeb, loop_func) {
+    this.feed = new Instafeed({
       get: 'user',
       userId: celeb.instagram_id,
       accessToken: '2072221807.1677ed0.cfc898e6c7124300bb90d836f3e14e9d',
       clientId: 'f41df43206564056b252ae8a5cb4019e',
+      limit: 60,
       error: function() {
         return console.log("instagram error");
       },
-      success: function(json) {
-        return cb(json.data);
-      }
+      success: (function(_this) {
+        return function(json) {
+          var list;
+          list = json.data;
+          return loop_func(list, _this.loop_done);
+        };
+      })(this)
     });
-    return feed.run();
+    return this.feed.run();
+  };
+
+  block_instagram_.prototype.loop_done = function() {
+    if (this.feed.hasNext()) {
+      return this.feed.next();
+    } else {
+
+    }
   };
 
   return block_instagram_;

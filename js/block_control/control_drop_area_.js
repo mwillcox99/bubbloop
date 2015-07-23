@@ -57,20 +57,22 @@ this.control_drop_area_ = (function() {
     })(this));
   };
 
-  control_drop_area_.prototype.run = function(outer_cb) {
-    var celeb;
-    celeb = this.celebrity.run();
-    return this.source.run(celeb, (function(_this) {
-      return function(list) {
+  control_drop_area_.prototype.run = function() {
+    var celeb_name;
+    celeb_name = this.celebrity.run();
+    return this.source.run(celeb_name, (function(_this) {
+      return function(list, outer_cb) {
         return async.forEachOfSeries(list, function(element, i, cb) {
           if (_this.filter.run(element)) {
+            console.log("GOT EM");
             _this.action.run(element, cb);
           } else {
-            console.log("Element does not pass filter");
+            console.log("SKIPPED");
             cb();
           }
         }, function(err) {
           if (outer_cb != null) {
+            console.log("LOOP ENDED");
             return outer_cb();
           }
         });

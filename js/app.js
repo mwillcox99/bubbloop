@@ -9,7 +9,7 @@ $(function() {
   window.block_spotify = new block_spotify_();
   window.block_soundcloud = new block_soundcloud_();
   window.block_filter = new block_filter_();
-  window.block_temp2 = new block_filter_();
+  window.block_hashtag = new block_hashtag_();
   window.block_temp3 = new block_filter_();
   window.block_display_image = new block_display_image_();
   window.block_play_audio = new block_play_audio_();
