@@ -50,7 +50,6 @@ this.block_instagram_ = (function() {
             cur = list[i];
             _this.uploaded_count++;
             _this.all_posts.push(cur);
-            console.log(cur);
           }
           $("#progress-animation").text(_this.uploaded_count + " PICTURES LOADED");
           return setTimeout(_this.loop_done, 0, cb);
@@ -64,7 +63,6 @@ this.block_instagram_ = (function() {
     if (this.feed.hasNext()) {
       return this.feed.next();
     } else {
-      console.log("NOPE WTF IS THIS SHIIIIIT FILTHY");
       return cb(this.all_posts);
     }
   };

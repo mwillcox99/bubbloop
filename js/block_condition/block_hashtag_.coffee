@@ -42,7 +42,6 @@ class @block_hashtag_
 
 		for cur_tag in lower_tags
 			if cur_tag.indexOf(tag) isnt -1
-				console.log "#{tag} is in ##{cur_tag}"
 				return true
 		return false
 		# if $.inArray(tag, lower_tags) is -1

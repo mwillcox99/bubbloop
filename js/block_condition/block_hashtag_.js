@@ -31,7 +31,6 @@ this.block_hashtag_ = (function() {
     for (i = 0, len = lower_tags.length; i < len; i++) {
       cur_tag = lower_tags[i];
       if (cur_tag.indexOf(tag) !== -1) {
-        console.log(tag + " is in #" + cur_tag);
         return true;
       }
     }

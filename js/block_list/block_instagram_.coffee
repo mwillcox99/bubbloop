@@ -55,7 +55,6 @@ class @block_instagram_
 				for cur in list
 					@uploaded_count++
 					@all_posts.push cur
-					console.log cur
 				$("#progress-animation").text "#{@uploaded_count} PICTURES LOADED"
 				setTimeout @loop_done, 0, cb
 
@@ -65,5 +64,4 @@ class @block_instagram_
 		if @feed.hasNext()
 			@feed.next()
 		else
-			console.log "NOPE WTF IS THIS SHIIIIIT FILTHY"
 			cb @all_posts
