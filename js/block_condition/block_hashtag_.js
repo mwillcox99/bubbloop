@@ -11,11 +11,12 @@ this.block_hashtag_ = (function() {
       window.hashtag_counter = 0;
     }
     this.counter = window.hashtag_counter;
-    css = "#hashtag_input" + window.hashtag_counter + " {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	font-size: 11px;\n}";
+    css = "#hashtag_input" + window.hashtag_counter + " {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	/*font-size: 11px;*/\n}\n\ninput[type='text'],\ninput[type='number'],\ntextarea {\n	font-size: 16px;\n}";
     $('<style type="text/css"></style>').html(css).appendTo("head");
     $("<div class=\"drag-wrap draggable filter\" name=\"hashtag\">\n	HASHTAG #\n	<input id=\"hashtag_input" + window.hashtag_counter + "\" type=\"text\" value=\"\">\n</div>").appendTo(".drag-zone");
     interact("[name=hashtag]").on('tap click', (function(_this) {
       return function(event) {
+        event.preventDefault();
         return $("#hashtag_input" + window.hashtag_counter).focus();
       };
     })(this));

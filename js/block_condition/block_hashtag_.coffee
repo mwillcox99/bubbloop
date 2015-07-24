@@ -14,7 +14,13 @@ class @block_hashtag_
 			width: 80%;
 			left: 6%;
 			text-align: center;
-			font-size: 11px;
+			/*font-size: 11px;*/
+		}
+
+		input[type='text'],
+		input[type='number'],
+		textarea {
+			font-size: 16px;
 		}
 		"""
 		$('<style type="text/css"></style>').html(css).appendTo "head"
@@ -28,6 +34,7 @@ class @block_hashtag_
 
 		interact("[name=hashtag]")
 		.on 'tap click', (event) =>
+			event.preventDefault()
 			$("#hashtag_input#{window.hashtag_counter}").focus()
 
 
