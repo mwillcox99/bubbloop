@@ -11,7 +11,18 @@ this.block_soundcloud_ = (function() {
   }
 
   block_soundcloud_.prototype.run = function(element) {
-    return console.log("SOUNDCLOUD RUN; no run function yet");
+    var track_url;
+    console.log("SOUNDCLOUD RUN");
+    SC.initialize({
+      client_id: '21269af4bcee636bc4e3036d5ae81daf'
+    });
+    track_url = 'http://soundcloud.com/donnietrumpet/sets/surf';
+    return SC.oEmbed(track_url, {
+      auto_play: true
+    }, function(oEmbed) {
+      console.log("oEmbed response:");
+      return console.log(oEmbed);
+    });
   };
 
   return block_soundcloud_;
