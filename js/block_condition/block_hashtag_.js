@@ -13,7 +13,7 @@ this.block_hashtag_ = (function() {
     this.counter = window.hashtag_counter;
     css = "#hashtag_input" + window.hashtag_counter + " {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	font-size: 11px;\n}";
     $('<style type="text/css"></style>').html(css).appendTo("head");
-    $("<div class=\"drag-wrap draggable filter\" name=\"hashtag\">\n	#\n	<input id=\"hashtag_input" + window.hashtag_counter + "\" type=\"text\" value=\"\">\n</div>").appendTo(".drag-zone");
+    $("<div class=\"drag-wrap draggable filter\" name=\"hashtag\">\n	HASHTAG #\n	<input id=\"hashtag_input" + window.hashtag_counter + "\" type=\"text\" value=\"\">\n</div>").appendTo(".drag-zone");
     interact("[name=hashtag]").on('tap click', (function(_this) {
       return function(event) {
         return $("#hashtag_input" + window.hashtag_counter).focus();
@@ -22,16 +22,20 @@ this.block_hashtag_ = (function() {
   }
 
   block_hashtag_.prototype.run = function(element) {
-    var lower_tags, tag, tags;
+    var cur_tag, i, len, lower_tags, tag, tags;
     tags = element.tags;
     tag = $("#hashtag_input" + this.counter).val().toLowerCase();
     lower_tags = tags.map(function(string) {
       return string.toLowerCase();
     });
-    if ($.inArray(tag, lower_tags) === -1) {
-      return false;
+    for (i = 0, len = lower_tags.length; i < len; i++) {
+      cur_tag = lower_tags[i];
+      if (cur_tag.indexOf(tag) !== -1) {
+        console.log(tag + " is in #" + cur_tag);
+        return true;
+      }
     }
-    return true;
+    return false;
   };
 
   return block_hashtag_;

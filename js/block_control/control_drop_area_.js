@@ -14,11 +14,11 @@ this.control_drop_area_ = (function() {
     current_counter = window.counter;
     switch (current_counter) {
       case 1:
-        return this.source = new control_drag_zone_(50, 70, 180, 'source');
+        return this.source = new control_drag_zone_(45, 75, 205, 'source');
       case 2:
-        return this.filter = new control_drag_zone_(120, 70, 180, 'filter');
+        return this.filter = new control_drag_zone_(125, 75, 205, 'filter');
       case 3:
-        return this.action = new control_drag_zone_(85, 162, 180, 'action');
+        return this.action = new control_drag_zone_(85, 182, 205, 'action');
       case 4:
         return this.create_button();
     }
@@ -37,14 +37,14 @@ this.control_drop_area_ = (function() {
       top: '0px'
     });
     $("body").prepend($blacken);
-    $new_div = $("<div id=\"new-button\">\n	<p style='position:absolute;left: 28px;top:22px;' >RUN!</p>\n</div>");
+    $new_div = $("<div id=\"new-button\">\n	<p style='position:absolute;left:30px;top:25px;' >RUN!</p>\n</div>");
     $new_div.css({
       'border-radius': '100px',
       width: '90px',
       height: '90px',
       position: 'absolute',
-      top: '153px',
-      left: '130px',
+      top: '180px',
+      left: '140px',
       'z-index': '10000',
       'background-color': 'white'
     });
@@ -64,16 +64,15 @@ this.control_drop_area_ = (function() {
       return function(list, outer_cb) {
         return async.forEachOfSeries(list, function(element, i, cb) {
           if (_this.filter.run(element)) {
-            console.log("GOT EM");
             _this.action.run(element, cb);
           } else {
-            console.log("SKIPPED");
             cb();
           }
         }, function(err) {
           if (outer_cb != null) {
-            console.log("LOOP ENDED");
             return outer_cb();
+          } else {
+            return console.log("LOOP ENDED W/O OUTER_CB");
           }
         });
       };

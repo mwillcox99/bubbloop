@@ -1,7 +1,7 @@
 
 $ ->
 	window.counter = 0 # this is to separate logic between conditions
-
+	
 	# -----------------------------
 	# BLOCKS (bank layout 9-8-9)
 	# -----------------------------

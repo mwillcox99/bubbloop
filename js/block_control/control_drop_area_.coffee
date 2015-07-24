@@ -27,14 +27,14 @@ class @control_drop_area_
 		switch current_counter
 			when 1 #this is after celeb has been dragged in
 				#will expand to drop zone in celeb
-				@source = new control_drag_zone_ 50, 70, 180, 'source'
+				@source = new control_drag_zone_ 45, 75, 205, 'source'
 
 			when 2
 				#expand to overlap once
-				@filter = new control_drag_zone_ 120, 70, 180, 'filter'
+				@filter = new control_drag_zone_ 125, 75, 205, 'filter'
 			when 3
 				#expand to triple circles
-				@action = new control_drag_zone_ 85, 162, 180, 'action'
+				@action = new control_drag_zone_ 85, 182, 205, 'action'
 			when 4
 				#run button shows up!
 				@create_button()
@@ -54,7 +54,7 @@ class @control_drop_area_
 
 		$new_div = $("""
 			<div id="new-button">
-				<p style='position:absolute;left: 28px;top:22px;' >RUN!</p>
+				<p style='position:absolute;left:30px;top:25px;' >RUN!</p>
 			</div>
 		""")
 		$new_div.css
@@ -62,8 +62,8 @@ class @control_drop_area_
 			width: '90px'
 			height: '90px'
 			position: 'absolute'
-			top: '153px'
-			left: '130px'
+			top: '180px'
+			left: '140px'
 			'z-index': '10000'
 			'background-color': 'white'
 		$("body").prepend $new_div
@@ -73,18 +73,18 @@ class @control_drop_area_
 
 	run: ()->
 		celeb_name = @celebrity.run()
+
 		@source.run celeb_name, (list, outer_cb) =>
 			# This is the for loop that iterates through the feed
 			async.forEachOfSeries list, (element, i, cb) =>
 				if @filter.run element
-					console.log "GOT EM"
 					@action.run element, cb
 				else
-					console.log "SKIPPED"
 					cb()
 				return
 			, (err) ->
 				if outer_cb?
-					console.log "LOOP ENDED"
 					outer_cb()
+				else
+					console.log "LOOP ENDED W/O OUTER_CB"
 

@@ -11,7 +11,28 @@ this.block_instagram_ = (function() {
     $("<div class=\"drag-wrap draggable source\" name=\"instagram\">\n	<img id=\"instagram_pic\" src=\"img/instagram.png\">\n</div>\n<div id=\"instafeed\"></div>").appendTo(".drag-zone");
   }
 
-  block_instagram_.prototype.run = function(celeb, loop_func) {
+  block_instagram_.prototype.run = function(celeb, cb) {
+    this.uploaded_count = 0;
+    $("<img src='img/load2.gif' style='position:absolute;top:10px;left:10px;width:350px;height:auto;z-index:1004;'>").appendTo($("body"));
+    $("<div id='compilation-animation' style='position:absolute;top:200px;left:90px;font-size:250%;color:white;z-index:1005;'>COMPILING</div>").appendTo($("body"));
+    $("<div id='progress-animation' style='position:absolute;top:250px;left:80px;font-size:150%;color:white;z-index:1005;'>0 PICTURES LOADED</div>").appendTo($("body"));
+    $("#new-button").remove();
+    this.current_interval = 0;
+    setInterval((function(_this) {
+      return function() {
+        var cur, dots, i, ref;
+        _this.current_interval++;
+        if (_this.current_interval > 3) {
+          _this.current_interval = 0;
+        }
+        dots = "";
+        for (cur = i = 0, ref = _this.current_interval; i < ref; cur = i += 1) {
+          dots += ".";
+        }
+        return $("#compilation-animation").text("COMPILING" + dots);
+      };
+    })(this), 500);
+    this.all_posts = [];
     this.feed = new Instafeed({
       get: 'user',
       userId: celeb.instagram_id,
@@ -23,20 +44,28 @@ this.block_instagram_ = (function() {
       },
       success: (function(_this) {
         return function(json) {
-          var list;
+          var cur, i, len, list;
           list = json.data;
-          return loop_func(list, _this.loop_done);
+          for (i = 0, len = list.length; i < len; i++) {
+            cur = list[i];
+            _this.uploaded_count++;
+            _this.all_posts.push(cur);
+            console.log(cur);
+          }
+          $("#progress-animation").text(_this.uploaded_count + " PICTURES LOADED");
+          return setTimeout(_this.loop_done, 0, cb);
         };
       })(this)
     });
     return this.feed.run();
   };
 
-  block_instagram_.prototype.loop_done = function() {
+  block_instagram_.prototype.loop_done = function(cb) {
     if (this.feed.hasNext()) {
       return this.feed.next();
     } else {
-
+      console.log("NOPE WTF IS THIS SHIIIIIT FILTHY");
+      return cb(this.all_posts);
     }
   };
 

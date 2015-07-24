@@ -21,7 +21,7 @@ class @block_hashtag_
 
 		$("""
 		<div class="drag-wrap draggable filter" name="hashtag">
-			#
+			HASHTAG #
 			<input id="hashtag_input#{window.hashtag_counter}" type="text" value="">
 		</div>
 		""").appendTo ".drag-zone"
@@ -40,6 +40,11 @@ class @block_hashtag_
 		lower_tags = tags.map (string)->
 			return string.toLowerCase()
 
-		if $.inArray(tag, lower_tags) is -1
-			return false
-		return true
+		for cur_tag in lower_tags
+			if cur_tag.indexOf(tag) isnt -1
+				console.log "#{tag} is in ##{cur_tag}"
+				return true
+		return false
+		# if $.inArray(tag, lower_tags) is -1
+		# 	return false
+		# return true
