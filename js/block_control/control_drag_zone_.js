@@ -18,7 +18,7 @@ this.control_drag_zone_ = (function() {
     });
     inValid_bubbles = $(".draggable:not(." + this.bubble_type + ")");
     inValid_bubbles.css({
-      'opacity': '0.6'
+      'opacity': '0.3'
     });
     append_to_this = null;
     if (typeof $target !== "undefined" && $target !== null) {
@@ -87,6 +87,8 @@ this.control_drag_zone_ = (function() {
             $clone = $related_target.detach();
             $clone.removeClass('drag-wrap');
             $clone.removeClass('getting--dragged');
+            $clone.removeClass('draggable');
+            $clone.addClass('not-draggable');
             $clone.appendTo('.drop-zone');
             $clone.removeClass("" + _this.bubble_type);
             x = $target.position().left + 10;

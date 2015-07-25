@@ -7,7 +7,7 @@ this.block_source_ = (function() {
     var css;
     css = "		";
     $("<style type='text/css'></style>").html(css).appendTo("head");
-    $("<div class=\"drag-wrap draggable source\" name=\"source\">\n	SOURCE\n</div>").appendTo(".drag-zone");
+    $("<div class=\"drag-wrap draggable source\" name=\"source\">\n</div>").appendTo(".drag-zone");
   }
 
   block_source_.prototype.run = function() {

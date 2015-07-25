@@ -32,6 +32,7 @@ class @control_drop_area_
 			when 2
 				#expand to overlap once
 				@filter = new control_drag_zone_ 125, 75, 205, 'filter'
+
 			when 3
 				#expand to triple circles
 				@action = new control_drag_zone_ 85, 182, 205, 'action'

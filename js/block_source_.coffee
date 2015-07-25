@@ -7,7 +7,6 @@ class @block_source_
 
 		$("""
 		<div class="drag-wrap draggable source" name="source">
-			SOURCE
 		</div>
 		""").appendTo ".drag-zone"
 

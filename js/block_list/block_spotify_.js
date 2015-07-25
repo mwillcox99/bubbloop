@@ -5,7 +5,7 @@ this.block_spotify_ = (function() {
   function block_spotify_() {
     this.run = bind(this.run, this);
     var css;
-    css = "#spotify {\n		background-image: url(img/spotify.png);\n		background-size: cover;\n}";
+    css = "[name=spotify] {\n	background-image: url(img/spotify.png);\n	background-size: cover;\n}";
     $("<style type='text/css'></style>").html(css).appendTo("head");
     $("<div id=\"spotify\" class=\"drag-wrap draggable source\" name=\"spotify\">\n</div>").appendTo(".drag-zone");
   }

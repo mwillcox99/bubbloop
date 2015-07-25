@@ -2,9 +2,9 @@ class @block_spotify_
 
 	constructor: ()->
 		css = """
-		#spotify {
-				background-image: url(img/spotify.png);
-				background-size: cover;
+		[name=spotify] {
+			background-image: url(img/spotify.png);
+			background-size: cover;
 		}
 		"""
 		$("<style type='text/css'></style>").html(css).appendTo "head"

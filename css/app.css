@@ -99,6 +99,23 @@ body {
   height: 20%;
 }
 
+.bubble {
+  background-color: #E6E6E6;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  vertical-align: center;
+  line-height: 100px;
+  margin: -10px;
+  float: left;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0,0,0,.2);
+  cursor: -webkit-grab;
+  cursor:    -moz-grab;
+  cursor:         grab;
+}
+
 .draggable {
   background-color: #E6E6E6;
   width: 150px;
@@ -121,6 +138,23 @@ body {
   cursor: -webkit-grabbing;
   cursor:    -moz-grabbing;
   cursor:         grabbing;
+}
+
+.not-draggable {
+  background-color: #E6E6E6;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  vertical-align: center;
+  line-height: 100px;
+  margin: -10px;
+  float: left;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0,0,0,.2);
+  cursor: -webkit-grab;
+  cursor:    -moz-grab;
+  cursor:         grab;
 }
 
 

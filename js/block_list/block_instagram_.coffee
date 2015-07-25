@@ -2,24 +2,24 @@ class @block_instagram_
 
 	constructor: ()->
 		css = """
-		#instagram_pic {
-			position: absolute;
-			left: 23px;
-			top: 23px;
-			width: 100px;
+		[name=instagram] {
+			background-image: url(img/instagram.png);
+			background-size: cover;
 		}
 		"""
 		$('<style type="text/css"></style>').html(css).appendTo "head"
 
 		$("""
 		<div class="drag-wrap draggable source" name="instagram">
-			<img id="instagram_pic" src="img/instagram.png">
 		</div>
 		<div id="instafeed"></div>
 		""").appendTo ".drag-zone"
 
 	#constructs an array to pass back to the list
 	run: (celeb, cb) =>
+		audio = new Audio "sound/#{celeb.name}.mp3"
+		audio.play()
+
 		@uploaded_count = 0
 		$("<img src='img/load2.gif' style='position:absolute;top:10px;left:10px;width:350px;height:auto;z-index:1004;'>").appendTo $("body")
 		$("<div id='compilation-animation' style='position:absolute;top:200px;left:90px;font-size:250%;color:white;z-index:1005;'>COMPILING</div>").appendTo $("body")
@@ -57,6 +57,7 @@ class @block_instagram_
 					@all_posts.push cur
 				$("#progress-animation").text "#{@uploaded_count} PICTURES LOADED"
 				setTimeout @loop_done, 0, cb
+				# cb @all_posts
 
 		@feed.run()
 

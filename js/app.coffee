@@ -1,7 +1,7 @@
 
 $ ->
 	window.counter = 0 # this is to separate logic between conditions
-	
+
 	# -----------------------------
 	# BLOCKS (bank layout 9-8-9)
 	# -----------------------------
@@ -11,20 +11,22 @@ $ ->
 	window.block_taylorswift = new block_taylorswift_()
 
 	# Step 2 - Source
+	window.block_source = new block_source_()
 	window.block_instagram = new block_instagram_()
-	window.block_spotify = new block_spotify_()
-	window.block_soundcloud = new block_soundcloud_()
+	window.block_source = new block_source_()
+	# window.block_spotify = new block_spotify_()
+	# window.block_soundcloud = new block_soundcloud_()
 
 	# Step 3 - Filters
-	window.block_filter = new block_filter_()
 	window.block_hashtag = new block_hashtag_()
-	window.block_temp3 = new block_filter_()
+	window.block_caption = new block_caption_()
+	window.block_users_in_photo = new block_users_in_photo_()
 
 	# Step 4 - Action
 	window.block_display_image = new block_display_image_()
 	window.block_play_audio = new block_play_audio_()
-	window.block_temp4 = new block_action_()
-	# window.block_tinder = new block_tinder_()
+	window.block_tinder = new block_tinder_()
+	# window.block_temp4 = new block_action_()
 	# window.block_display_image_fade = new block_display_image_fade_()
 
 	# Control statements

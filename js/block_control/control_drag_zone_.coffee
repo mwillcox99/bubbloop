@@ -27,7 +27,7 @@ class @control_drag_zone_
 		# Fade out invalid bubbles
 		inValid_bubbles = $(".draggable:not(.#{@bubble_type})")
 		inValid_bubbles.css
-			'opacity': '0.6'
+			'opacity': '0.3'
 
 		append_to_this = null
 		if $target?
@@ -103,6 +103,8 @@ class @control_drag_zone_
 					$clone = $related_target.detach()
 					$clone.removeClass('drag-wrap')
 					$clone.removeClass('getting--dragged')
+					$clone.removeClass('draggable')
+					$clone.addClass('not-draggable')
 					$clone.appendTo('.drop-zone')
 					$clone.removeClass("#{@bubble_type}")
 

@@ -6,12 +6,15 @@ this.block_instagram_ = (function() {
     this.loop_done = bind(this.loop_done, this);
     this.run = bind(this.run, this);
     var css;
-    css = "#instagram_pic {\n	position: absolute;\n	left: 23px;\n	top: 23px;\n	width: 100px;\n}";
+    css = "[name=instagram] {\n	background-image: url(img/instagram.png);\n	background-size: cover;\n}";
     $('<style type="text/css"></style>').html(css).appendTo("head");
-    $("<div class=\"drag-wrap draggable source\" name=\"instagram\">\n	<img id=\"instagram_pic\" src=\"img/instagram.png\">\n</div>\n<div id=\"instafeed\"></div>").appendTo(".drag-zone");
+    $("<div class=\"drag-wrap draggable source\" name=\"instagram\">\n</div>\n<div id=\"instafeed\"></div>").appendTo(".drag-zone");
   }
 
   block_instagram_.prototype.run = function(celeb, cb) {
+    var audio;
+    audio = new Audio("sound/" + celeb.name + ".mp3");
+    audio.play();
     this.uploaded_count = 0;
     $("<img src='img/load2.gif' style='position:absolute;top:10px;left:10px;width:350px;height:auto;z-index:1004;'>").appendTo($("body"));
     $("<div id='compilation-animation' style='position:absolute;top:200px;left:90px;font-size:250%;color:white;z-index:1005;'>COMPILING</div>").appendTo($("body"));
