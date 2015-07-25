@@ -64,6 +64,13 @@ $ ->
 	onScroll cr.left - (w / 2) + cr.width / 2, cr.top - (h / 2) + cr.height / 2
 
 
+	# $("<input id='input_test' type='text' value=''>").appendTo $("body")
+	# $("#input_test").css
+	# 	position: "absolute"
+	# 	top: "100px"
+	# 	left: "100px"
+	# 	'font-size': "16px"
+
 	# ---------------------------------
 	# DRAGGABLE GRID (BUBBLE SCROLLING)
 	# ---------------------------------

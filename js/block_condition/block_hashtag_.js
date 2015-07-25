@@ -4,6 +4,8 @@ var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); 
 this.block_hashtag_ = (function() {
   function block_hashtag_() {
     this.run = bind(this.run, this);
+    this.expand = bind(this.expand, this);
+    this.blacken_background = bind(this.blacken_background, this);
     var css;
     if (window.hashtag_counter != null) {
       window.hashtag_counter++;
@@ -11,16 +13,98 @@ this.block_hashtag_ = (function() {
       window.hashtag_counter = 0;
     }
     this.counter = window.hashtag_counter;
-    css = "#hashtag_input" + window.hashtag_counter + " {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	/*font-size: 11px;*/\n}\n\ninput[type='text'],\ninput[type='number'],\ntextarea {\n	font-size: 16px;\n}";
+    css = "#hashtag_input" + this.counter + " {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	/*font-size: 11px;*/\n}\n\ninput[type='text'],\ninput[type='number'],\ntextarea {\n	font-size: 16px;\n}";
     $('<style type="text/css"></style>').html(css).appendTo("head");
-    $("<div class=\"drag-wrap draggable filter\" name=\"hashtag\">\n	HASHTAG #\n	<input id=\"hashtag_input" + window.hashtag_counter + "\" type=\"text\" value=\"\">\n</div>").appendTo(".drag-zone");
-    interact("[name=hashtag]").on('tap click', (function(_this) {
+    $("<div class=\"drag-wrap draggable filter\" name=\"hashtag\">\n	HASHTAG #\n	<input id=\"hashtag_input" + this.counter + "\" type=\"text\" value=\"\">\n</div>").appendTo(".drag-zone");
+    interact("[name=hashtag]").on('tap', (function(_this) {
       return function(event) {
         event.preventDefault();
-        return $("#hashtag_input" + window.hashtag_counter).focus();
+        console.log("GOT IN HASHTAG TAP EVENT");
+        $("#hashtag_input" + _this.counter).focus();
+        return _this.expand();
       };
     })(this));
   }
+
+  block_hashtag_.prototype.blacken_background = function() {
+    var $blacken;
+    $blacken = $("<div id='blacken-input'></div>").css({
+      'z-index': '500',
+      'background-color': 'rgba(0,0,0,0.5)',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      left: '0px',
+      top: '0px'
+    });
+    $("body").prepend($blacken);
+    return $blacken.bind('tap touchstart', function() {
+      $("#popup-input").blur();
+      $("#popup-input").remove();
+      return $("#blacken-input").remove();
+    });
+  };
+
+  block_hashtag_.prototype.expand = function() {
+    var $popup_input, actual, actual_height, box_width, height, left, original_height, original_width, position, scale, scaled, str_length, value, width;
+    this.blacken_background();
+    height = document.documentElement.clientHeight;
+    width = document.documentElement.clientWidth;
+    box_width = width / 2;
+    left = width / 2 - box_width / 2;
+    value = $("#hashtag_input" + this.counter).val();
+    $popup_input = $("<input id='popup-input' type='text'>");
+    $popup_input.val(value);
+    $popup_input.appendTo($("body"));
+    str_length = $popup_input.val().length * 2;
+    $popup_input.focus();
+    $popup_input[0].setSelectionRange(str_length, str_length);
+    position = $("#hashtag_input" + this.counter).offset();
+    actual = $("#hashtag_input" + this.counter)[0].getBoundingClientRect().width;
+    actual_height = $("#hashtag_input" + this.counter)[0].getBoundingClientRect().height;
+    scaled = $("#hashtag_input" + this.counter)[0].offsetWidth;
+    scale = actual / scaled;
+    original_width = $("#hashtag_input" + this.counter).innerWidth();
+    original_height = $("#hashtag_input" + this.counter).innerHeight();
+    $("#popup-input").css({
+      'z-index': 600,
+      position: "fixed",
+      left: position.left,
+      top: position.top,
+      'font-size': '16px',
+      'text-align': 'center',
+      'width': original_width * scale + 1,
+      'height': actual_height
+    });
+    $popup_input.velocity({
+      width: box_width,
+      height: original_height,
+      top: height / 2,
+      left: left
+    });
+    console.log("SET!");
+    $("#popup-input").on('keyup', (function(_this) {
+      return function(event) {
+        var new_value;
+        console.log("changed");
+        if (event.which === 13) {
+          $("#popup-input").blur();
+          $("#popup-input").remove();
+          return $("#blacken-input").remove();
+        } else {
+          new_value = $("#popup-input").val();
+          console.log(new_value);
+          return $("#hashtag_input" + _this.counter).val(new_value);
+        }
+      };
+    })(this));
+    return $("#popup-input").blur((function(_this) {
+      return function() {
+        $("#popup-input").remove();
+        return $("#blacken-input").remove();
+      };
+    })(this));
+  };
 
   block_hashtag_.prototype.run = function(element) {
     var cur_tag, i, len, lower_tags, tag, tags;
