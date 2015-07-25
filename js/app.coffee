@@ -8,7 +8,7 @@ $ ->
 	# Step 1 - Celeb
 	window.block_beyonce = new block_beyonce_()
 	window.block_taylorswift = new block_taylorswift_()
-	window.block_drake = newx block_drake_()
+	window.block_drake = new block_drake_()
 
 	# Step 2 - Source
 	window.block_source = new block_source_()
