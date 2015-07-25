@@ -80,3 +80,8 @@ app.use express.static __dirname
 # # 	console.log medias
 # # 	console.log remaining
 # # 	console.log limit
+
+
+
+# save screen shot
+# make collage
