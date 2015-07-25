@@ -2,13 +2,16 @@ class @block_caption_
 
 	constructor: ()->
 		css = """
+		[name=caption] {
+			font-size: 25px;
+		}
 		#caption_input {
 			position: absolute;
 			top: 55%;
 			width: 80%;
 			left: 6%;
 			text-align: center;
-			/*font-size: 11px;*/
+			font-size: 12px;
 		}
 
 		input[type='text'],
@@ -32,10 +35,9 @@ class @block_caption_
 			$("#caption_input").focus()
 
 
-
 	run: (element)=>
-		console.log element
 		input = $("#caption_input").val().toLowerCase()
+
 		if element.caption isnt null and element.caption.text.indexOf(input) isnt -1
 			return true
 		return false

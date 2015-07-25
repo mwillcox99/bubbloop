@@ -8,13 +8,16 @@ class @block_hashtag_
 
 		@counter = window.hashtag_counter
 		css = """
+		[name=hashtag] {
+			font-size: 50px;
+		}
 		#hashtag_input#{@counter} {
 			position: absolute;
 			top: 55%;
 			width: 80%;
 			left: 6%;
 			text-align: center;
-			/*font-size: 11px;*/
+			font-size: 12px;
 		}
 
 		input[type='text'],
@@ -27,7 +30,7 @@ class @block_hashtag_
 
 		$("""
 		<div class="drag-wrap draggable filter" name="hashtag">
-			HASHTAG #
+			#
 			<input id="hashtag_input#{@counter}" type="text" value="">
 		</div>
 		""").appendTo ".drag-zone"
@@ -36,7 +39,7 @@ class @block_hashtag_
 		.on 'tap', (event) =>
 			event.preventDefault()
 
-			console.log "GOT IN HASHTAG TAP EVENT"
+			# console.log "GOT IN HASHTAG TAP EVENT"
 			$("#hashtag_input#{@counter}").focus()
 			# $("#hashtag_input#{window.hashtag_counter}").val "GOT HEEEEEM"
 			# alert "GOT IN TOUCH EVENT"
@@ -110,17 +113,17 @@ class @block_hashtag_
 			height: original_height
 			top: height/2
 			left: left
-		console.log "SET!"
+		# console.log "SET!"
 		$("#popup-input").on 'keyup', (event) =>
-			console.log "changed"
-			
+			# console.log "changed"
+
 			if event.which is 13 #return key
 				$("#popup-input").blur()
 				$("#popup-input").remove()
 				$("#blacken-input").remove()
 			else
 				new_value = $("#popup-input").val()
-				console.log new_value
+				# console.log new_value
 				$("#hashtag_input#{@counter}").val(new_value)
 		#this is what happens when the user clicks away from the input box
 		$("#popup-input").blur =>

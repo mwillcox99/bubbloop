@@ -37,7 +37,7 @@ this.control_drop_area_ = (function() {
       top: '0px'
     });
     $("body").prepend($blacken);
-    $new_div = $("<div id=\"new-button\">\n	<p style='position:absolute;left:30px;top:25px;' >RUN!</p>\n</div>");
+    $new_div = $("<div id=\"new-button\">\n	<p style='position:absolute;font-size: 25px;left:17px;top:5px;' >RUN!</p>\n</div>");
     $new_div.css({
       'border-radius': '100px',
       width: '90px',

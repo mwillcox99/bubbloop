@@ -15,7 +15,7 @@ class @block_instagram_
 		<div id="instafeed"></div>
 		""").appendTo ".drag-zone"
 
-	#constructs an array to pass back to the list
+	# constructs an array to pass back to the list
 	run: (celeb, cb) =>
 		audio = new Audio "sound/#{celeb.name}.mp3"
 		audio.play()
@@ -39,7 +39,7 @@ class @block_instagram_
 			$("#compilation-animation").text "COMPILING#{dots}"
 		, 500
 
-		#get the feed for instagram
+		# get the feed for instagram
 		@all_posts = []
 		@feed = new Instafeed
 			get: 'user'

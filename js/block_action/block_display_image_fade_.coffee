@@ -28,7 +28,7 @@ class @block_display_image_fade_
             left: 0
             width: '100%'
             height: '100%'
-            zIndex: 90
+            zIndex: 10000000
 
         $('#image-div').css
             backgroundImage:"url(#{url})"
@@ -42,7 +42,7 @@ class @block_display_image_fade_
             left:'-50%'
             width : '200%'
             height : '200%'
-            zIndex: 100
+            zIndex: 10000001
             opacity: 0.35
             transform: 'rotate(15deg)'
 
@@ -56,7 +56,7 @@ class @block_display_image_fade_
             position: 'fixed'
             right: 0
             top: 0
-            zIndex: 110
+            zIndex: 10000002
 
         fadingPic = "#pic" + num
 

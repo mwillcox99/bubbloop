@@ -7,15 +7,15 @@ $ ->
 	# -----------------------------
 	# Step 1 - Celeb
 	window.block_beyonce = new block_beyonce_()
-	window.block_drake = new block_drake_()
 	window.block_taylorswift = new block_taylorswift_()
+	window.block_drake = newx block_drake_()
 
 	# Step 2 - Source
 	window.block_source = new block_source_()
 	window.block_instagram = new block_instagram_()
 	window.block_source = new block_source_()
 	# window.block_spotify = new block_spotify_()
-	# window.block_soundcloud = new block_soundcloud_()
+	# window.block_soundcloud = new block_soundcloud_() # needs work
 
 	# Step 3 - Filters
 	window.block_hashtag = new block_hashtag_()
@@ -23,19 +23,14 @@ $ ->
 	window.block_users_in_photo = new block_users_in_photo_()
 
 	# Step 4 - Action
+	window.block_display_image_fade = new block_display_image_fade_()
 	window.block_display_image = new block_display_image_()
-	window.block_play_audio = new block_play_audio_()
 	window.block_tinder = new block_tinder_()
-	# window.block_temp4 = new block_action_()
-	# window.block_display_image_fade = new block_display_image_fade_()
+	# window.block_play_audio = new block_play_audio_()
 
 	# Control statements
 	window.control = new control_drop_area_ ()->
 		console.log "DONE"
-	# new control_source_()
-	# control = new control_drag_zone_(140, 0, 200)
-	# new control_drag_zone_(40, 0, 200)
-	# new control_drag_zone_(90, 100, 200)
 
 
 	# ---------------------------
@@ -66,12 +61,6 @@ $ ->
 	onScroll cr.left - (w / 2) + cr.width / 2, cr.top - (h / 2) + cr.height / 2
 
 
-	# $("<input id='input_test' type='text' value=''>").appendTo $("body")
-	# $("#input_test").css
-	# 	position: "absolute"
-	# 	top: "100px"
-	# 	left: "100px"
-	# 	'font-size': "16px"
 
 	# ---------------------------------
 	# DRAGGABLE GRID (BUBBLE SCROLLING)

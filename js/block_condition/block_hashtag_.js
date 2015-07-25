@@ -13,13 +13,12 @@ this.block_hashtag_ = (function() {
       window.hashtag_counter = 0;
     }
     this.counter = window.hashtag_counter;
-    css = "#hashtag_input" + this.counter + " {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	/*font-size: 11px;*/\n}\n\ninput[type='text'],\ninput[type='number'],\ntextarea {\n	font-size: 16px;\n}";
+    css = "[name=hashtag] {\n	font-size: 50px;\n}\n#hashtag_input" + this.counter + " {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	font-size: 12px;\n}\n\ninput[type='text'],\ninput[type='number'],\ntextarea {\n	font-size: 16px;\n}";
     $('<style type="text/css"></style>').html(css).appendTo("head");
-    $("<div class=\"drag-wrap draggable filter\" name=\"hashtag\">\n	HASHTAG #\n	<input id=\"hashtag_input" + this.counter + "\" type=\"text\" value=\"\">\n</div>").appendTo(".drag-zone");
+    $("<div class=\"drag-wrap draggable filter\" name=\"hashtag\">\n	#\n	<input id=\"hashtag_input" + this.counter + "\" type=\"text\" value=\"\">\n</div>").appendTo(".drag-zone");
     interact("[name=hashtag]").on('tap', (function(_this) {
       return function(event) {
         event.preventDefault();
-        console.log("GOT IN HASHTAG TAP EVENT");
         $("#hashtag_input" + _this.counter).focus();
         return _this.expand();
       };
@@ -82,18 +81,15 @@ this.block_hashtag_ = (function() {
       top: height / 2,
       left: left
     });
-    console.log("SET!");
     $("#popup-input").on('keyup', (function(_this) {
       return function(event) {
         var new_value;
-        console.log("changed");
         if (event.which === 13) {
           $("#popup-input").blur();
           $("#popup-input").remove();
           return $("#blacken-input").remove();
         } else {
           new_value = $("#popup-input").val();
-          console.log(new_value);
           return $("#hashtag_input" + _this.counter).val(new_value);
         }
       };

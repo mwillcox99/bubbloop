@@ -3,16 +3,16 @@ $(function() {
   var c, cb, commands, cr, h, items, onScroll, put_text_in_block, startPos, w;
   window.counter = 0;
   window.block_beyonce = new block_beyonce_();
-  window.block_drake = new block_drake_();
   window.block_taylorswift = new block_taylorswift_();
+  window.block_drake = newx(block_drake_());
   window.block_source = new block_source_();
   window.block_instagram = new block_instagram_();
   window.block_source = new block_source_();
   window.block_hashtag = new block_hashtag_();
   window.block_caption = new block_caption_();
   window.block_users_in_photo = new block_users_in_photo_();
+  window.block_display_image_fade = new block_display_image_fade_();
   window.block_display_image = new block_display_image_();
-  window.block_play_audio = new block_play_audio_();
   window.block_tinder = new block_tinder_();
   window.control = new control_drop_area_(function() {
     return console.log("DONE");

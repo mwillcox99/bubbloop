@@ -5,7 +5,7 @@ this.block_caption_ = (function() {
   function block_caption_() {
     this.run = bind(this.run, this);
     var css;
-    css = "#caption_input {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	/*font-size: 11px;*/\n}\n\ninput[type='text'],\ninput[type='number'],\ntextarea {\n	font-size: 16px;\n}";
+    css = "[name=caption] {\n	font-size: 25px;\n}\n#caption_input {\n	position: absolute;\n	top: 55%;\n	width: 80%;\n	left: 6%;\n	text-align: center;\n	font-size: 12px;\n}\n\ninput[type='text'],\ninput[type='number'],\ntextarea {\n	font-size: 16px;\n}";
     $('<style type="text/css"></style>').html(css).appendTo("head");
     $("<div class=\"drag-wrap draggable filter\" name=\"caption\">\n	CAPTION\n	<input id=\"caption_input\" type=\"text\" value=\"\">\n</div>").appendTo(".drag-zone");
     interact("[name=caption]").on('tap click', (function(_this) {
@@ -18,7 +18,6 @@ this.block_caption_ = (function() {
 
   block_caption_.prototype.run = function(element) {
     var input;
-    console.log(element);
     input = $("#caption_input").val().toLowerCase();
     if (element.caption !== null && element.caption.text.indexOf(input) !== -1) {
       return true;

@@ -75,7 +75,7 @@ class @block_tinder_
     $('<style type="text/css"></style>').html(css).appendTo "head"
 
     $("""
-    <div id = "tinder_drag" class="drag-wrap draggable" name="tinder">
+    <div id = "tinder_drag" class="drag-wrap draggable action" name="tinder">
     </div>
     """).appendTo ".drag-zone"
 
@@ -83,17 +83,9 @@ class @block_tinder_
   window.tinder_no_entries = []
 
   run: (obj, cb) =>
-    # console.log entry
-    audio = new Audio()
-    audio.src = entry.preview_url
-    audio.play()
+    url = obj.images.standard_resolution.url
+    description = obj.caption.text
 
-    if entry.album is undefined  # instagram
-      url = entry.images.standard_resolution.url
-      description = entry.caption.text
-    else # spotify
-      url = entry.album.images[0].url
-      description = "Track: " + entry.name
     $('<div id="white-background"></div><div id="image-div"></div><div id="viewport">
         <ul class="stack">
           <li class="in-deck"></li>
@@ -117,10 +109,9 @@ class @block_tinder_
       left: 0
       width: '100%'
       height: '100%'
-      zIndex: 90
+      zIndex: 10000000
 
     $('#image-div').css
-      backgroundImage:"url(#{url})"
       backgroundSize:'cover'
       backgroundPosition:'center'
       position:'fixed'
@@ -131,7 +122,7 @@ class @block_tinder_
       left:'-50%'
       width : '200%'
       height : '200%'
-      zIndex: 100
+      zIndex: 10000001
       opacity: 0.35
       transform: 'rotate(15deg)'
 
@@ -145,23 +136,22 @@ class @block_tinder_
       position: 'fixed'
       right: 0
       top: 0
-      zIndex: 110
+      zIndex: 10000001
 
-    $(".stack").prepend "<li id = 'active-entry' class='in-deck added'><img src=" + url +
-     " width='100%'; height='200px'><div id='description'>" + description  + "</div></li>"
     stack = gajus.Swing.Stack()
     stack.createCard document.querySelector('.stack li.in-deck')
 
     stack.on 'throwout', (e) =>
-      audio.pause()
+      $(".stack").prepend "<li id = 'active-entry' class='in-deck added'><img src=" + url +
+      " width='100%'; height='200px'><div id='description'>" + description  + "</div></li>"
+      $('#image-div').css backgroundImage:"url(#{url})"
+
       # right
       if e.throwDirection == 1
-        window.tinder_no_entries.push entry
+        window.tinder_no_entries.push obj
 
       # left
       if e.throwDirection != 1
-        window.tinder_yes_entries.push entry
+        window.tinder_yes_entries.push obj
 
-      e.target.remove()
-      e.target.classList.remove("in-deck")
-      cb() 
+      cb()

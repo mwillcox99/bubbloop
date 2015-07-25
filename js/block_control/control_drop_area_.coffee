@@ -28,6 +28,7 @@ class @control_drop_area_
 			when 1 #this is after celeb has been dragged in
 				#will expand to drop zone in celeb
 				@source = new control_drag_zone_ 45, 75, 205, 'source'
+				# @source.run(@celebrity)
 
 			when 2
 				#expand to overlap once
@@ -55,7 +56,7 @@ class @control_drop_area_
 
 		$new_div = $("""
 			<div id="new-button">
-				<p style='position:absolute;left:30px;top:25px;' >RUN!</p>
+				<p style='position:absolute;font-size: 25px;left:17px;top:5px;' >RUN!</p>
 			</div>
 		""")
 		$new_div.css
