@@ -28,16 +28,15 @@ class @block_instagram_
 
 		@current_interval = 0
 
-		setInterval =>
+
+		wait 500, =>
 			@current_interval++
 			if @current_interval > 3
 				@current_interval = 0
 			dots = ""
 			for cur in [0...@current_interval] by 1
 				dots += "."
-
 			$("#compilation-animation").text "COMPILING#{dots}"
-		, 500
 
 		# get the feed for instagram
 		@all_posts = []

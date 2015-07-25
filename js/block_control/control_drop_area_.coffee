@@ -59,15 +59,16 @@ class @control_drop_area_
 				<p style='position:absolute;font-size: 25px;left:17px;top:5px;' >RUN!</p>
 			</div>
 		""")
+
 		$new_div.css
-			'border-radius': '100px'
-			width: '90px'
-			height: '90px'
+			borderRadius: 100
+			width: 90
+			height: 90
 			position: 'absolute'
-			top: '180px'
-			left: '140px'
-			'z-index': '10000'
-			'background-color': 'white'
+			top: 180
+			left: 140
+			zIndex: 10000
+			backgroundColor: 'white'
 		$("body").prepend $new_div
 		$new_div.addClass 'can--drop'
 		$new_div.bind 'tap click',()=>
@@ -89,4 +90,3 @@ class @control_drop_area_
 					outer_cb()
 				else
 					console.log "LOOP ENDED W/O OUTER_CB"
-

@@ -29,7 +29,6 @@ class @control_source_
 		@spot_filled = [false, false]
 
 		# still double fillable
-		#interact('.droppable:not(.caught--it)').dropzone
 		interact(".droppable-#{@counter_id}").dropzone
 			accept: '.draggable'
 			overlap: .1

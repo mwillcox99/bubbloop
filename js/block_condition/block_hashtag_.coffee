@@ -38,35 +38,27 @@ class @block_hashtag_
 		interact("[name=hashtag]")
 		.on 'tap', (event) =>
 			event.preventDefault()
-
-			# console.log "GOT IN HASHTAG TAP EVENT"
 			$("#hashtag_input#{@counter}").focus()
-			# $("#hashtag_input#{window.hashtag_counter}").val "GOT HEEEEEM"
-			# alert "GOT IN TOUCH EVENT"
 			@expand()
 
 
 	blacken_background: () =>
-		$blacken = $("<div id='blacken-input'></div>").css
-			'z-index':'500'
-			# 'opacity': '0.1'
-			'background-color': 'rgba(0,0,0,0.5)'
+		$blacken = $ "<div>",
+			id: 'blacken-input'
+		.css
+			zIndex: 500
+			backgroundColor: 'rgba(0,0,0,0.5)'
 			width: '100%'
 			height: '100%'
 			position: 'absolute'
-			left: '0px'
-			top: '0px'
+			left: 0
+			top: 0
 
 		$("body").prepend $blacken
 		$blacken.bind 'tap touchstart', ->
 			$("#popup-input").blur()
 			$("#popup-input").remove()
 			$("#blacken-input").remove()
-		# $blacken.velocity
-		# 	'backgroundColor': '#000000'
-		# 	'backgroundColorAlpha': "0.5"
-		# ,
-		# 	'duration':'5000'
 
 	expand: () =>
 		@blacken_background()
@@ -100,23 +92,21 @@ class @block_hashtag_
 		original_width = $("#hashtag_input#{@counter}").innerWidth()
 		original_height = $("#hashtag_input#{@counter}").innerHeight()
 		$("#popup-input").css
-			'z-index': 600
+			zIndex: 600
 			position: "fixed"
 			left: position.left
 			top: position.top
-			'font-size': '16px'
-			'text-align':'center'
-			'width': original_width*scale + 1
-			'height': actual_height
+			fontSize: 16
+			textAlign: center
+			width: original_width*scale + 1
+			height: actual_height
 		$popup_input.velocity
 			width: box_width
 			height: original_height
 			top: height/2
 			left: left
-		# console.log "SET!"
-		$("#popup-input").on 'keyup', (event) =>
-			# console.log "changed"
 
+		$("#popup-input").on 'keyup', (event) =>
 			if event.which is 13 #return key
 				$("#popup-input").blur()
 				$("#popup-input").remove()
@@ -129,9 +119,6 @@ class @block_hashtag_
 		$("#popup-input").blur =>
 			$("#popup-input").remove()
 			$("#blacken-input").remove()
-
-
-
 
 	run: (element)=>
 		# tags is an array of strings

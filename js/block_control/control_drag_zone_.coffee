@@ -1,8 +1,8 @@
 class @control_drag_zone_
 
 	constructor: (left, top, diameter, bubble_type)->
-		@counter_id = window.counter;
-		window.counter = @counter_id + 1;
+		@counter_id = window.counter
+		window.counter = @counter_id + 1
 		@left = left
 		@top = top
 		@diameter = diameter
@@ -22,12 +22,12 @@ class @control_drag_zone_
 		$("<style type='text/css'></style>").html(css).appendTo "head"
 
 		$(".#{@bubble_type}").css
-			opacity: '1'
+			opacity: 1
 
 		# Fade out invalid bubbles
 		inValid_bubbles = $(".draggable:not(.#{@bubble_type})")
 		inValid_bubbles.css
-			'opacity': '0.3'
+			opacity: .3
 
 		append_to_this = null
 		if $target?
@@ -101,12 +101,12 @@ class @control_drag_zone_
 				if $related_target.hasClass('drag-wrap')
 					# clone and append to drop zone
 					$clone = $related_target.detach()
-					$clone.removeClass('drag-wrap')
-					$clone.removeClass('getting--dragged')
-					$clone.removeClass('draggable')
-					$clone.addClass('not-draggable')
-					$clone.appendTo('.drop-zone')
-					$clone.removeClass("#{@bubble_type}")
+					$clone.removeClass 'drag-wrap'
+					$clone.removeClass 'getting--dragged'
+					$clone.removeClass 'draggable'
+					$clone.addClass 'not-draggable'
+					$clone.appendTo '.drop-zone'
+					$clone.removeClass "#{@bubble_type}"
 
 					# update position attributes
 					x = $target.position().left + 10
@@ -115,14 +115,14 @@ class @control_drag_zone_
 						'-webkit-transform': "translate(#{x}px, #{y}px)"
 						position: 'absolute'
 						opacity: 0.4
-						width: "#{diameter}"
-						height: "#{diameter}"
+						width: diameter
+						height: diameter
 					$clone.attr 'data-x', x
 					$clone.attr 'data-y', y
 
 					# original dropzone disappear
 					$target.css
-						'opacity':'0'
+						opacity: '0'
 
 					# remove all bubbles of current type
 					$(".#{@bubble_type}").remove()
@@ -133,15 +133,9 @@ class @control_drag_zone_
 
 					window.control.expand()
 
-					# $target.attr "filled", "true"
-					# $target.addClass 'caught--it'
-
 			ondropdeactivate: (event) ->
 				$target = $ event.target
 				$target.removeClass 'can--drop', 'can--catch'
-
-	# transform_action_area: ($target, $block, isLoop) ->
-	# 	console.log "YEAH!"
 
 	run: (name, cb)=>
 		@block.run name, cb

@@ -1,4 +1,3 @@
-
 $ ->
 	window.counter = 0 # this is to separate logic between conditions
 
@@ -31,7 +30,6 @@ $ ->
 	# Control statements
 	window.control = new control_drop_area_ ()->
 		console.log "DONE"
-
 
 	# ---------------------------
 	# APPLE WATCH UI BLOCK BANK
